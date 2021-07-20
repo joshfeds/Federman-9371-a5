@@ -1,14 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
 
+<AnchorPane prefHeight="410.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.InventoryManager">
+   <children>
+      <VBox layoutX="314.0" layoutY="14.0" prefHeight="395.0" prefWidth="379.0">
+         <children>
+            <TableView onSort="#SortButton" prefHeight="395.0" prefWidth="379.0">
+              <columns>
+                <TableColumn editable="false" prefWidth="114.0" text="Name" />
+                <TableColumn editable="false" prefWidth="139.0" text="Serial Code" />
+                  <TableColumn editable="false" prefWidth="125.0" text="Value" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+      <VBox layoutX="14.0" layoutY="56.0" prefHeight="117.0" prefWidth="149.0">
+         <children>
+            <TextField fx:id="nameID" onAction="#nameField" promptText="Name">
+               <font>
+                  <Font name="Georgia" size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="serialCodeID" onAction="#serialCodeField" promptText="Serial Code">
+               <font>
+                  <Font name="Georgia" size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="valueID" onAction="#valueField" promptText="Value">
+               <font>
+                  <Font name="Georgia" size="12.0" />
+               </font>
+            </TextField>
+            <Button mnemonicParsing="false" onAction="#addItemButton" prefHeight="25.0" prefWidth="150.0" text="Add Item">
+               <font>
+                  <Font name="Georgia" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#removeItemButton" prefHeight="25.0" prefWidth="150.0" text="Remove Item">
+               <font>
+                  <Font name="Georgia" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <Text layoutX="78.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Control Menu" wrappingWidth="174.34765625">
+         <font>
+            <Font name="Georgia" size="28.0" />
+         </font>
+      </Text>
+      <VBox layoutX="165.0" layoutY="254.0" prefHeight="69.0" prefWidth="149.0">
+         <children>
+            <TextField fx:id="searchNumberID" onAction="#searchNumberField" promptText="Search Number">
+               <font>
+                  <Font name="Georgia" size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="searchItemID" onAction="#searchName" promptText="Search Item">
+               <font>
+                  <Font name="Georgia" size="12.0" />
+               </font>
+            </TextField>
+            <Button mnemonicParsing="false" onAction="#searchButton" prefHeight="25.0" prefWidth="150.0" text="Search">
+               <font>
+                  <Font name="Georgia" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <VBox layoutX="165.0" layoutY="56.0" prefHeight="102.0" prefWidth="149.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#editNameButton" prefHeight="25.0" prefWidth="150.0" text="Edit Name">
+               <font>
+                  <Font name="Georgia" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#editSerialCodeButton" prefHeight="25.0" prefWidth="150.0" text="Edit Serial Code">
+               <font>
+                  <Font name="Georgia" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#editValueButton" prefHeight="25.0" prefWidth="150.0" text="Edit Value">
+               <font>
+                  <Font name="Georgia" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <VBox layoutX="14.0" layoutY="254.0" prefHeight="139.0" prefWidth="149.0">
+         <children>
+            <TextField fx:id="fileNameID" onAction="#fileNameField" promptText="File Name">
+               <font>
+                  <Font name="Georgia" size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="fileLocationID" onAction="#fileLocationField" promptText="File Location">
+               <font>
+                  <Font name="Georgia" size="12.0" />
+               </font>
+            </TextField>
+            <Button mnemonicParsing="false" onAction="#saveTSVButton" prefHeight="25.0" prefWidth="150.0" text="Save to TSV">
+               <font>
+                  <Font name="Georgia" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#saveHTMLButton" prefHeight="25.0" prefWidth="150.0" text="Save to HTML">
+               <font>
+                  <Font name="Georgia" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#loadTSVButton" prefHeight="25.0" prefWidth="150.0" text="Load to TSV">
+               <font>
+                  <Font name="Georgia" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#loadHTMLButton" prefHeight="25.0" prefWidth="150.0" text="Load to HTML">
+               <font>
+                  <Font name="Georgia" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <Text layoutX="49.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File/Search Menu" wrappingWidth="232.34765625">
+         <font>
+            <Font name="Georgia" size="28.0" />
+         </font>
+      </Text>
+   </children>
 </AnchorPane>
