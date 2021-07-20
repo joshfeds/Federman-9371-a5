@@ -4,25 +4,42 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.SortEvent;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class InventoryManager {
-    @FXML
-    public TableView tableView;
-    public ObservableList<Item> list = FXCollections.observableArrayList();
-    public TextField nameID;
-    public TextField serialCodeID;
-    public TextField valueID;
-    public TextField searchNumberID;
-    public TextField searchItemID;
-    public TextField fileNameID;
-    public TextField fileLocationID;
 
+    public ObservableList<Item> list = FXCollections.observableArrayList();
+
+    @FXML public TextField nameID;
+
+    @FXML public TextField serialCodeID;
+
+    @FXML public TextField valueID;
+
+    @FXML public TextField searchNumberID;
+
+    @FXML public TextField searchItemID;
+
+    @FXML public TextField fileNameID;
+
+    @FXML public TextField fileLocationID;
+
+    @FXML public TableView<Item> tableView;
+
+    @FXML private TableColumn<Item, String> nameColumn;
+
+    @FXML private TableColumn<Item, String> serialColumn;
+
+    @FXML private TableColumn<Item, String> valueColumn;
+
+    public ControlMenu controlMenu = new ControlMenu();
     @FXML
     public void initialize(){
-        itemDisplay.setItems(filteredList);
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Item, String>("Name"));
+        serialColumn.setCellValueFactory(new PropertyValueFactory<Item, String>("Serial"));
+        valueColumn.setCellValueFactory(new PropertyValueFactory<Item, String>("Value"));
+        tableView.setItems(list);
     }
     @FXML
     public void SortButton(SortEvent<TableView> tableViewSortEvent) {
@@ -47,12 +64,18 @@ public class InventoryManager {
         String name = nameField(actionEvent);
         String serial = serialCodeField(actionEvent);
         String value = valueField(actionEvent);
-        list.add(new Item(name, serial, value));
-        System.out.println("added");
+        if(controlMenu.addItem(name, serial, value, list)){
+            String asDollar = controlMenu.formatToDollar(value);
+            list.add(new Item(name, serial, asDollar));
+        }
+
     }
 
     @FXML
     public void removeItemButton(ActionEvent actionEvent) {
+        int focusedIndex = tableView.getFocusModel().getFocusedIndex();
+        if(focusedIndex > -1)
+            list.remove(focusedIndex);
     }
 
     @FXML

@@ -5,9 +5,9 @@ public class Item {
     private String value;
     private String serial;
 
-    public Item(String name, String value, String serial){
+    public Item(String name, String serial, String value){
         this.name = name;
-        this.name = value;
+        this.value = value;
         this.serial = serial;
     }
     public String getName() {

@@ -14,11 +14,11 @@
    <children>
       <VBox layoutX="314.0" layoutY="14.0" prefHeight="395.0" prefWidth="379.0">
          <children>
-            <TableView onSort="#SortButton" prefHeight="395.0" prefWidth="379.0">
+            <TableView fx:id="tableView" onSort="#SortButton" prefHeight="395.0" prefWidth="379.0">
               <columns>
-                <TableColumn editable="false" prefWidth="114.0" text="Name" />
-                <TableColumn editable="false" prefWidth="139.0" text="Serial Code" />
-                  <TableColumn editable="false" prefWidth="125.0" text="Value" />
+                <TableColumn fx:id="nameColumn" editable="false" prefWidth="114.0" text="Name" />
+                <TableColumn fx:id="serialColumn" editable="false" prefWidth="139.0" text="Serial Code" />
+                  <TableColumn fx:id="valueColumn" editable="false" prefWidth="125.0" text="Value" />
               </columns>
             </TableView>
          </children>
