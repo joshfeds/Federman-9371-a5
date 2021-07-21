@@ -3,10 +3,9 @@ package ucf.assignments;
 import javafx.collections.ObservableList;
 
 import java.text.NumberFormat;
-import java.util.Currency;
 import java.util.Locale;
 
-public class ControlMenu {
+public class ValidateItem {
     public boolean addItem(String name, String serial, String value, ObservableList<Item> list){
         if(!isName(name) || !isValue(value) || !isSerial(serial, list))
             return false;
@@ -48,5 +47,9 @@ public class ControlMenu {
         Locale USD = new Locale("en", "US");
         NumberFormat numberFormat = NumberFormat.getCurrencyInstance(USD);
         return numberFormat.format(money);
+    }
+    public ObservableList<Item> addToList(String name, String serial, String value, ObservableList<Item> list){
+        list.add(new Item(name, serial, value));
+        return list;
     }
 }
