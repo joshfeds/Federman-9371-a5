@@ -2,13 +2,15 @@ package ucf.assignments;
 
 import javafx.collections.ObservableList;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Scanner;
 
 public class FileMenu {
+    public ValidateItem validateItem = new ValidateItem();
+
     public void createTSV(String name, String location, ObservableList<Item> list){
         //future note: make this return a string to confirm a file was created
         try {
@@ -26,7 +28,7 @@ public class FileMenu {
         String tabString = "";
         for(int i = 0; i < list.size(); i++){
             tabString += list.get(i).getName() + "\t" + list.get(i).getSerial() +
-                    "\t" + list.get(i).getValue() + "\n";
+                    "\t" + list.get(i).getValue() + "\t\n";
         }
         return tabString;
     }
@@ -55,5 +57,32 @@ public class FileMenu {
         }
         htmlString += "</table>\n " + "</html>";
         return htmlString;
+    }
+    public ObservableList<Item> loadTSV(String name, String location, ObservableList<Item> list){
+        //return list
+        System.out.println("teest");
+        try {
+            Path path = Paths.get("resources/" + location);
+            FileReader reader = new FileReader(path + "/" + name + ".txt");
+            Scanner inputIO = new Scanner(reader);
+            return listFromTSV(list, inputIO);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return list;
+        }
+
+    }
+    public ObservableList<Item> listFromTSV(ObservableList<Item> list, Scanner inputIO){
+        int i = 0;
+        while(inputIO.hasNextLine()){
+            String data = inputIO.nextLine();
+            String [] itemAsArray = data.split("\\t");
+            String name = itemAsArray[0];
+            String serial = itemAsArray[1];
+            String value = itemAsArray[2];
+            list = validateItem.addToList(name, serial, value, list);
+            i++;
+        }
+        return list;
     }
 }

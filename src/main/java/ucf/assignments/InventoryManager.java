@@ -187,6 +187,16 @@ public class InventoryManager {
 
     @FXML
     public void loadTSVButton(ActionEvent actionEvent) {
+        String fileName = fileNameField(actionEvent);
+        String fileLocation = fileLocationField(actionEvent);
+        int size = list.size();
+        System.out.println(size);
+        //test to see if the arrayList is empty
+        while(!list.isEmpty()){
+            list.remove(size - 1);
+            size--;
+        }
+        fileMenu.loadTSV(fileName, fileLocation, list);
     }
 
     @FXML

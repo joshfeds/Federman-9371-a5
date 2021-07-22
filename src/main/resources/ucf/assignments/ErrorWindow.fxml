@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 
 <AnchorPane prefHeight="150.0" prefWidth="322.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.ErrorWindow">
    <children>
-      <Text layoutX="129.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This is a test" />
+      <Text layoutX="42.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sorry, there was an error with your item." wrappingWidth="237.75">
+         <font>
+            <Font name="Georgia" size="16.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
