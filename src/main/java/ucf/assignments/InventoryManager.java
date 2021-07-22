@@ -6,9 +6,15 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class InventoryManager {
 
@@ -43,6 +49,7 @@ public class InventoryManager {
 
     public ValidateItem validateItem = new ValidateItem();
 
+    public FileMenu fileMenu = new FileMenu();
     @FXML
     public void initialize(){
         nameColumn.setCellValueFactory(new PropertyValueFactory<Item, String>("Name"));
@@ -53,6 +60,7 @@ public class InventoryManager {
     }
     @FXML
     public void SortButton(SortEvent<TableView<Item>> tableViewSortEvent) {
+        //use the predicate
     }
 
     @FXML
@@ -100,8 +108,18 @@ public class InventoryManager {
             list = validateItem.addToList(name, serial, asDollar, list);
         }
         else{
-            Label label = new Label("Error Window");
+            try{
+                Parent root = FXMLLoader.load(getClass().getResource("ErrorWindow.fxml"));
 
+                Scene scene = new Scene(root);
+
+                Stage stage = new Stage();
+                stage.setTitle("Error Window");
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -138,7 +156,7 @@ public class InventoryManager {
         Item item = getCurrentItem();
         String serial = editItemField(actionEvent);
         if(validateItem.isSerial(serial, list)){
-            item.setName(serial);
+            item.setSerial(serial);
             tableView.refresh();
         }
     }
@@ -148,17 +166,23 @@ public class InventoryManager {
         Item item = getCurrentItem();
         String value = editItemField(actionEvent);
         if(validateItem.isValue(value)){
-            item.setName(value);
+            item.setValue(value);
             tableView.refresh();
         }
     }
 
     @FXML
     public void saveTSVButton(ActionEvent actionEvent) {
+        String fileName = fileNameField(actionEvent);
+        String fileLocation = fileLocationField(actionEvent);
+        fileMenu.createTSV(fileName, fileLocation, list);
     }
 
     @FXML
     public void saveHTMLButton(ActionEvent actionEvent) {
+        String fileName = fileNameField(actionEvent);
+        String fileLocation = fileLocationField(actionEvent);
+        fileMenu.createHTML(fileName, fileLocation, list);
     }
 
     @FXML
