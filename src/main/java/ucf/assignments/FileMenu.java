@@ -30,11 +30,11 @@ public class FileMenu {
             String fileName = path + "/" + name + ".txt";
             File file = new File(fileName);
             FileWriter writer = new FileWriter(file);
-            if(fileExists(file)){
-                String listData = listToTabString(list);
-                writer.write(listData);
-                writer.flush();
-            }
+
+            String listData = listToTabString(list);
+            writer.write(listData);
+            writer.flush();
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -118,13 +118,13 @@ public class FileMenu {
             }
 
             Scanner inputIO = new Scanner(reader);
-            return listFromHTML(list, inputIO, filePath);
+            return listFromHTML(list, inputIO);
         } catch (IOException e) {
             return list;
         }
 
     }
-    public ObservableList<Item> listFromHTML(ObservableList<Item> list, Scanner inputIO, String path) throws IOException {
+    public ObservableList<Item> listFromHTML(ObservableList<Item> list, Scanner inputIO) throws IOException {
         String html = "";
         while(inputIO.hasNextLine()){
             html += inputIO.nextLine();
