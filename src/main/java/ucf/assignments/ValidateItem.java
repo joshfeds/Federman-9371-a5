@@ -55,4 +55,8 @@ public class ValidateItem {
         list.add(new Item(name, serial, value));
         return list;
     }
+    public ObservableList<Item> removeFromList(ObservableList<Item> list, int index){
+        list.remove(index);
+        return list;
+    }
 }

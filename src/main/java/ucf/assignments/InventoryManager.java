@@ -55,6 +55,7 @@ public class InventoryManager {
 
     public FileMenu fileMenu = new FileMenu();
 
+    public EditItem changeItem = new EditItem();
     @FXML
     public void initialize(){
         nameColumn.setCellValueFactory(new PropertyValueFactory<Item, String>("Name"));
@@ -65,7 +66,6 @@ public class InventoryManager {
     }
     @FXML
     public void SortButton(SortEvent<TableView<Item>> tableViewSortEvent) {
-        //use the predicate
     }
 
     @FXML
@@ -133,7 +133,7 @@ public class InventoryManager {
         int focusedIndex = tableView.getFocusModel().getFocusedIndex();
         if(focusedIndex > -1){
             int sourceIndex = sortedList.getSourceIndex(focusedIndex);
-            list.remove(sourceIndex);
+            list = validateItem.removeFromList(list, sourceIndex);
         }
     }
     @FXML
@@ -151,7 +151,7 @@ public class InventoryManager {
         Item item = getCurrentItem();
         String name = editItemField(actionEvent);
         if(validateItem.isName(name)){
-            item.setName(name);
+            changeItem.editName(item, name);
             tableView.refresh();
         }
     }
@@ -161,7 +161,7 @@ public class InventoryManager {
         Item item = getCurrentItem();
         String serial = editItemField(actionEvent);
         if(validateItem.isSerial(serial, list)){
-            item.setSerial(serial);
+            changeItem.editSerial(item, serial);
             tableView.refresh();
         }
     }
@@ -171,7 +171,7 @@ public class InventoryManager {
         Item item = getCurrentItem();
         String value = editItemField(actionEvent);
         if(validateItem.isValue(value)){
-            item.setValue(value);
+            changeItem.editValue(item, value);
             tableView.refresh();
         }
     }

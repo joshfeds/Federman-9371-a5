@@ -17,16 +17,25 @@ import java.util.Scanner;
  */
 public class FileMenu {
     public ValidateItem validateItem = new ValidateItem();
-
+    public boolean fileExists(File file){
+        if(file.exists())
+            return true;
+        return false;
+    }
     public void createTSV(String name, String location, ObservableList<Item> list){
         //future note: make this return a string to confirm a file was created
         try {
             Path path = Paths.get("resources/" + location);
             Files.createDirectories(path);
-            FileWriter writer = new FileWriter(path + "/" + name + ".txt");
-            String listData = listToTabString(list);
-            writer.write(listData);
-            writer.flush();
+            String fileName = path + "/" + name + ".txt";
+            File file = new File(fileName);
+            FileWriter writer = new FileWriter(file);
+            if(fileExists(file)){
+                String listData = listToTabString(list);
+                writer.write(listData);
+                writer.flush();
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
