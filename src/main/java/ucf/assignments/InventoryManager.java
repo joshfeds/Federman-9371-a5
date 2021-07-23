@@ -11,15 +11,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+/*
+ *  UCF COP3330 Summer 2021 Assignment 5 Solution
+ *  Copyright 2021 Joshua Federman
+ */
 public class InventoryManager {
 
     public ObservableList<Item> list = FXCollections.observableArrayList();
+
     public FilteredList<Item> filteredList = new FilteredList<>(list);
+
     public SortedList<Item> sortedList = new SortedList<>(filteredList);
     @FXML public TextField nameID;
 
@@ -50,6 +54,7 @@ public class InventoryManager {
     public ValidateItem validateItem = new ValidateItem();
 
     public FileMenu fileMenu = new FileMenu();
+
     @FXML
     public void initialize(){
         nameColumn.setCellValueFactory(new PropertyValueFactory<Item, String>("Name"));
@@ -189,18 +194,15 @@ public class InventoryManager {
     public void loadTSVButton(ActionEvent actionEvent) {
         String fileName = fileNameField(actionEvent);
         String fileLocation = fileLocationField(actionEvent);
-        int size = list.size();
-        System.out.println(size);
-        //test to see if the arrayList is empty
-        while(!list.isEmpty()){
-            list.remove(size - 1);
-            size--;
-        }
-        fileMenu.loadTSV(fileName, fileLocation, list);
+
+       list = fileMenu.loadTSV(fileName, fileLocation, list);
     }
 
     @FXML
     public void loadHTMLButton(ActionEvent actionEvent) {
+        String fileName = fileNameField(actionEvent);
+        String fileLocation = fileLocationField(actionEvent);
+        list = fileMenu.loadHTML(fileName, fileLocation, list);
     }
     public Item getCurrentItem(){
         //grabs index within listView

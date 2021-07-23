@@ -4,7 +4,10 @@ import javafx.collections.ObservableList;
 
 import java.text.NumberFormat;
 import java.util.Locale;
-
+/*
+ *  UCF COP3330 Summer 2021 Assignment 5 Solution
+ *  Copyright 2021 Joshua Federman
+ */
 public class ValidateItem {
     public boolean addItem(String name, String serial, String value, ObservableList<Item> list){
         if(!isName(name) || !isValue(value) || !isSerial(serial, list))
@@ -35,8 +38,8 @@ public class ValidateItem {
         if(serial.length() != 10)
             return false;
 
-        for(int i = 0; i < list.size(); i++){
-            if(list.get(i).getSerial().compareTo(serial) == 0){
+        for (Item item : list) {
+            if (item.getSerial().compareTo(serial) == 0) {
                 return false;
             }
         }

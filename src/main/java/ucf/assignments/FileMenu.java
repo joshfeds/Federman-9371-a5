@@ -1,13 +1,20 @@
 package ucf.assignments;
 
 import javafx.collections.ObservableList;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
-
+/*
+ *  UCF COP3330 Summer 2021 Assignment 5 Solution
+ *  Copyright 2021 Joshua Federman
+ */
 public class FileMenu {
     public ValidateItem validateItem = new ValidateItem();
 
@@ -60,14 +67,19 @@ public class FileMenu {
     }
     public ObservableList<Item> loadTSV(String name, String location, ObservableList<Item> list){
         //return list
-        System.out.println("teest");
         try {
             Path path = Paths.get("resources/" + location);
             FileReader reader = new FileReader(path + "/" + name + ".txt");
+
+            int size = list.size();
+            while(!list.isEmpty()){
+                list.remove(size - 1);
+                size--;
+            }
+
             Scanner inputIO = new Scanner(reader);
             return listFromTSV(list, inputIO);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
             return list;
         }
 
@@ -77,11 +89,49 @@ public class FileMenu {
         while(inputIO.hasNextLine()){
             String data = inputIO.nextLine();
             String [] itemAsArray = data.split("\\t");
-            String name = itemAsArray[0];
-            String serial = itemAsArray[1];
-            String value = itemAsArray[2];
-            list = validateItem.addToList(name, serial, value, list);
+
+            list = validateItem.addToList(itemAsArray[0], itemAsArray[1], itemAsArray[2], list);
             i++;
+        }
+        return list;
+    }
+    public ObservableList<Item> loadHTML(String name, String location, ObservableList<Item> list){
+        //return list
+        try {
+
+            Path path = Paths.get("resources/" + location);
+            FileReader reader = new FileReader(path + "/" + name + ".html");
+            String filePath = path + "/" + name + ".html";
+            int size = list.size();
+            while(!list.isEmpty()){
+                list.remove(size - 1);
+                size--;
+            }
+
+            Scanner inputIO = new Scanner(reader);
+            return listFromHTML(list, inputIO, filePath);
+        } catch (IOException e) {
+            return list;
+        }
+
+    }
+    public ObservableList<Item> listFromHTML(ObservableList<Item> list, Scanner inputIO, String path) throws IOException {
+        String html = "";
+        while(inputIO.hasNextLine()){
+            html += inputIO.nextLine();
+        }
+        Document document = Jsoup.parse(html);
+        Element table = document.select("table").get(0);
+        Elements rows = table.select("tr");
+
+        for (int i = 1; i < rows.size(); i++){
+            Element singleRow = rows.get(i);
+            Elements columns = singleRow.select("td");
+            String [] colmToArray = new String[3];
+            for(int j = 0; j < columns.size(); j++){
+                colmToArray[j] = columns.get(j).text();
+            }
+            list = validateItem.addToList(colmToArray[0], colmToArray[1], colmToArray[2], list);
         }
         return list;
     }
