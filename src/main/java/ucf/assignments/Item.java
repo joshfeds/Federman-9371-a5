@@ -5,8 +5,8 @@ package ucf.assignments;
  */
 public class Item {
     private String name;
-    private String value;
     private String serial;
+    private String value;
 
     public Item(String name, String serial, String value){
         this.name = name;

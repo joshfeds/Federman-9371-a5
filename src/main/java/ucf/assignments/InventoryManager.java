@@ -25,23 +25,24 @@ public class InventoryManager {
     public FilteredList<Item> filteredList = new FilteredList<>(list);
 
     public SortedList<Item> sortedList = new SortedList<>(filteredList);
-    @FXML public TextField nameID;
 
-    @FXML public TextField serialCodeID;
+    @FXML private TextField nameID;
 
-    @FXML public TextField valueID;
+    @FXML private TextField serialCodeID;
 
-    @FXML public TextField searchNumberID;
+    @FXML private TextField valueID;
 
-    @FXML public TextField searchNameID;
+    @FXML private TextField searchNumberID;
 
-    @FXML public TextField fileNameID;
+    @FXML private TextField searchNameID;
 
-    @FXML public TextField fileLocationID;
+    @FXML private TextField fileNameID;
 
-    @FXML public TableView<Item> tableView;
+    @FXML private TextField fileLocationID;
 
-    @FXML public TextField editItem;
+    @FXML private TableView<Item> tableView;
+
+    @FXML private TextField editItem;
 
     @FXML private TableColumn<Item, String> nameColumn;
 

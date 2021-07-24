@@ -1,0 +1,115 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+MainApp --|>InventoryManager
+Item --*InventoryManager
+InventoryManager --|> EditItem
+InventoryManager --|> ValidateItem
+InventoryManager --|> FileMenu
+InventoryManager --|> SearchItem
+InventoryManager --|> ErrorWindow
+class EditItem{
+editName()
+editSerial()
+editValue()
+}
+class ErrorWindow{
+
+
+}
+class FileMenu{
+fileExists()
+createTSV()
+listToTabString()
+createHTML()
+listToHTML()
+loadTSV()
+listFromTSV()
+loadHTML()
+listFromHTML()
+}
+class InventoryManager{
+--Public--
++ObservableList<Item> list
++FilteredList<Item> filteredList
++SortedList<Item> sortedList
+--Private--
+-nameID
+-serialCodeID
+-searchNumberID
+-searchNameID
+-fileNameID
+-fileLocationID
+-tableView
+-editItem
+-nameColumn
+-serialColumn
+-valueColumn
+--Initialize List--
+initialize()
+--Sort List--
+SortButton()
+--TextField--
+nameField()
+serialCodeField()
+valueField()
+searchNumberField()
+searchNameField()
+editItemField()
+fileNameField()
+fileLocationField()
+--Add/Remove
+addItemButton()
+removeItemButton()
+--Search--
+searchNameButton()
+searchNumberButton()
+--Edit--
+editNameButton()
+editSerialCodeButton()
+editValueButton()
+--Save/Load--
+saveTSVButton()
+saveHTMLButton()
+loadTSVButton()
+loadHTMLButton()
+--Get Selected Item--
+getCurrentItem()
+}
+class Item{
+--Item--
+name
+serial
+value
+Item
+--Getter--
+getName()
+getSerial()
+getValue()
+--Setter--
+setName()
+setSerial()
+setValue()
+}
+class MainApp{
+main()
+start()
+}
+class SearchItem{
+nameExists()
+serialExists()
+}
+class ValidateItem{
+--Checks Item Input--
+addItem()
+isName()
+isSerial()
+isValue()
+--Value to Dollar--
+formatToDollar()
+--Add or Remove Item--
+addToList()
+removeFromList()
+}
+
+@enduml
