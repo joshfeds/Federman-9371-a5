@@ -2,7 +2,7 @@
 ## How to add an item  
 To add an item, fill the name, serial code, and value Textfields with valid information.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A name should be between 2 and 256 characters.  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A serial code should be unique and have exactly 10 characters consisting of letters and numbers.   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A serial code should be unique and have exactly 10 characters consisting of letters and numbers. Note: difference between serial codes are case sensitive, meaning Qwertyuiop is different than qwertyuiop.     
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A value shall be valid USA monetary value.  
 Press the Add Item button to add your item into the tableview.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If there is an error, a window will pop up.
