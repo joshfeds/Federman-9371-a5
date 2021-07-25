@@ -119,12 +119,36 @@ class ValidateItemTest {
         assertEquals(expected, actual);
     }
     @Test
-    void addItem_value_not_valid() {
+    void addItem_value_two_decimals() {
         ValidateItem validateItem = new ValidateItem();
         boolean expected = false;
         String name = "Xbox";
         String serial = "0o9i8u7y6t";
         String value = "100a.64.9";
+        ObservableList<Item> list = FXCollections.observableArrayList();
+        list.add(new Item("Playstation", "0o9i8u7y6t", "425.99"));
+        boolean actual = validateItem.addItem(name, serial, value, list);
+        assertEquals(expected, actual);
+    }
+    @Test
+    void addItem_value_two_commas() {
+        ValidateItem validateItem = new ValidateItem();
+        boolean expected = false;
+        String name = "Xbox";
+        String serial = "0o9i8u7y6t";
+        String value = "100,64,9";
+        ObservableList<Item> list = FXCollections.observableArrayList();
+        list.add(new Item("Playstation", "0o9i8u7y6t", "425.99"));
+        boolean actual = validateItem.addItem(name, serial, value, list);
+        assertEquals(expected, actual);
+    }
+    @Test
+    void addItem_value_letters() {
+        ValidateItem validateItem = new ValidateItem();
+        boolean expected = false;
+        String name = "Xbox";
+        String serial = "0o9i8u7y6t";
+        String value = "100,23.67a";
         ObservableList<Item> list = FXCollections.observableArrayList();
         list.add(new Item("Playstation", "0o9i8u7y6t", "425.99"));
         boolean actual = validateItem.addItem(name, serial, value, list);
