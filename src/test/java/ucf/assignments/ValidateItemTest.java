@@ -37,56 +37,57 @@ class ValidateItemTest {
     void addItem_name_long() {
         ValidateItem validateItem = new ValidateItem();
         boolean expected = false;
-        String name = "Nature, nurture, heaven, and home\n" +
-                "Sum of all, and by them, driven\n" +
-                "To conquer every mountain shown\n" +
-                "But I've never crossed the river\n" +
-                "Braved the forests, braved the stone\n" +
-                "Braved the icy winds and fire\n" +
-                "Braved and beat them on my own\n" +
-                "Yet I'm helpless by the river\n" +
-                "Angel, angel, what have I done?\n" +
-                "I've faced the quakes, the wind, the fire\n" +
-                "I've conquered country, crown, and throne\n" +
-                "Why can't I cross this river?\n" +
-                "Angel, angel, what have I done?\n" +
-                "I've faced the quakes, the wind, the fire\n" +
-                "I've conquered country, crown, and throne\n" +
-                "Why can't I cross this river?\n" +
-                "Pay no mind to the battles you've won\n" +
-                "It'll take a lot more than rage and muscle\n" +
-                "Open your heart and hands, my son\n" +
-                "Or you'll never make it over the river\n" +
-                "It'll take a lot more than words and guns\n" +
-                "A whole lot more than riches and muscle\n" +
-                "The hands of the many must join as one\n" +
-                "And together we'll cross the river\n" +
-                "It'll take a lot more than words and guns\n" +
-                "A whole lot more than riches and muscle\n" +
-                "The hands of the many must join as one\n" +
-                "And together we'll cross the river\n" +
-                "Nature, nurture, heaven, and home\n" +
-                "It'll take a lot more than words and guns\n" +
-                "Sum of all, and by them, driven\n" +
-                "A whole lot more than riches and muscle\n" +
-                "To conquer every mountain shown\n" +
-                "The hands of the many must join as one\n" +
-                "And together we'll cross the river\n" +
-                "Braved the forests, braved the stone\n" +
-                "It'll take a lot more than words and guns\n" +
-                "Braved the icy winds and fire\n" +
-                "A whole lot more than riches and muscle\n" +
-                "Braved and beat them on my own\n" +
-                "The hands of the many must join as one\n" +
-                "And together we'll cross the river\n" +
-                "And together we'll cross the river\n" +
-                "And together we'll cross the river\n" +
-                "Nature, nurture, heaven, and home\n" +
-                "And together we'll cross the river\n" +
-                "And together we'll cross the river\n" +
-                "Nature, nurture, heaven, and home\n" +
-                "And together we'll cross the river\n" +
-                "And together we'll cross the river";
+        String name = """
+                Nature, nurture, heaven, and home
+                Sum of all, and by them, driven
+                To conquer every mountain shown
+                But I've never crossed the river
+                Braved the forests, braved the stone
+                Braved the icy winds and fire
+                Braved and beat them on my own
+                Yet I'm helpless by the river
+                Angel, angel, what have I done?
+                I've faced the quakes, the wind, the fire
+                I've conquered country, crown, and throne
+                Why can't I cross this river?
+                Angel, angel, what have I done?
+                I've faced the quakes, the wind, the fire
+                I've conquered country, crown, and throne
+                Why can't I cross this river?
+                Pay no mind to the battles you've won
+                It'll take a lot more than rage and muscle
+                Open your heart and hands, my son
+                Or you'll never make it over the river
+                It'll take a lot more than words and guns
+                A whole lot more than riches and muscle
+                The hands of the many must join as one
+                And together we'll cross the river
+                It'll take a lot more than words and guns
+                A whole lot more than riches and muscle
+                The hands of the many must join as one
+                And together we'll cross the river
+                Nature, nurture, heaven, and home
+                It'll take a lot more than words and guns
+                Sum of all, and by them, driven
+                A whole lot more than riches and muscle
+                To conquer every mountain shown
+                The hands of the many must join as one
+                And together we'll cross the river
+                Braved the forests, braved the stone
+                It'll take a lot more than words and guns
+                Braved the icy winds and fire
+                A whole lot more than riches and muscle
+                Braved and beat them on my own
+                The hands of the many must join as one
+                And together we'll cross the river
+                And together we'll cross the river
+                And together we'll cross the river
+                Nature, nurture, heaven, and home
+                And together we'll cross the river
+                And together we'll cross the river
+                Nature, nurture, heaven, and home
+                And together we'll cross the river
+                And together we'll cross the river""";
         String serial = "1q2w3e4r5t";
         String value = "499.99";
         ObservableList<Item> list = FXCollections.observableArrayList();
