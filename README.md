@@ -30,7 +30,7 @@ Press the Search Name button.
 To search for an item's serial code, enter the serial code you would like to search for in the textfield.  
 Press the Search Name button.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If it doesn't exist, nothing will show up.    
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To reset, make sure nothing is in the name textfield and press Search Serial Code Button.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To reset, make sure nothing is in the name textfield and press Search Serial Code Button or Search Name Button.  
 
 ## How to save a table to file  
 To save a table to file, enter the name and location of the file.  
